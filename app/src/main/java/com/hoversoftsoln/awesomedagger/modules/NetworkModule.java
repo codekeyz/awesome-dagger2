@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.hoversoftsoln.awesomedagger.qualifiers.ApplicationContext;
 import com.hoversoftsoln.awesomedagger.scopes.GithubApplicationScope;
 import com.squareup.picasso.OkHttp3Downloader;
 
@@ -16,12 +17,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import timber.log.Timber;
 
-@Module(includes = {ContextModule.class})
+@Module(includes = {ContextModule.class, ActivityModule.class})
 public class NetworkModule {
 
     @Provides
     @GithubApplicationScope
-    public File cacheFile(Context context) {
+    public File cacheFile(@ApplicationContext Context context) {
         return new File(context.getCacheDir(), "okhttp_cache");
     }
 

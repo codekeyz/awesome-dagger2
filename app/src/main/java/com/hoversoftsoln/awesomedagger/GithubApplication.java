@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.hoversoftsoln.awesomedagger.components.DaggerGithubApplicationComponent;
 import com.hoversoftsoln.awesomedagger.components.GithubApplicationComponent;
+import com.hoversoftsoln.awesomedagger.modules.ActivityModule;
 import com.hoversoftsoln.awesomedagger.modules.ContextModule;
 
 import timber.log.Timber;
