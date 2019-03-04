@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-@Module
+@Module(includes = {NetworkModule.class})
 public class GithubServiceModule {
 
     @Provides
@@ -31,9 +31,9 @@ public class GithubServiceModule {
     }
 
     @Provides
-    public Picasso picasso(Context context, OkHttpClient okHttpClient) {
+    public Picasso picasso(Context context, OkHttp3Downloader downloader) {
         return new Picasso.Builder(context)
-                .downloader(new OkHttp3Downloader(okHttpClient))
+                .downloader(downloader)
                 .build();
     }
 

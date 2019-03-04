@@ -2,6 +2,10 @@ package com.hoversoftsoln.awesomedagger.modules;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.squareup.picasso.OkHttp3Downloader;
+
 import java.io.File;
 
 import dagger.Module;
@@ -11,7 +15,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import timber.log.Timber;
 
-@Module
+@Module(includes = {ContextModule.class})
 public class NetworkModule {
 
     @Provides
@@ -35,5 +39,15 @@ public class NetworkModule {
                 .addInterceptor(loggingInterceptor)
                 .cache(cache)
                 .build();
+    }
+
+    @Provides
+    public OkHttp3Downloader okHttp3Downloader(OkHttpClient okHttpClient) {
+        return new OkHttp3Downloader(okHttpClient);
+    }
+
+    @Provides
+    public Gson gson() {
+       return new GsonBuilder().create();
     }
 }
